@@ -1,0 +1,49 @@
+type Match{
+    id:ID,
+    reference:String,
+    date:String,
+    location:String,
+    team1:String,
+    team2:String,
+    ticketList:[Ticket]
+}
+
+type Ticket{
+    id:ID,
+    reference:String,
+    price:Float,
+    status:String
+    match:Match
+}
+
+input  MatchRequestDto{
+    date:String,
+    location:String,
+    team1:String,
+    team2:String,
+}
+
+type MatchResponseDto{
+    id:ID,
+    reference:String,
+    date:String,
+    location:String,
+    team1:String,
+    team2:String,
+    ticketList:[Ticket]
+}
+
+type Query{
+    getMatchs:[MatchResponseDto],
+    getMatchById(id:ID):MatchResponseDto,
+    getTickets:[Ticket],
+    getTicketById(id:ID):Ticket
+}
+
+type Mutation{
+
+    addMatch(m:MatchRequestDto):MatchResponseDto,
+    updateMatch(id:ID,m:MatchRequestDto):MatchResponseDto,
+    deleteMatch(id:ID):String
+    deleteTicket(id:ID):String
+}
